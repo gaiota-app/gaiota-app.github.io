@@ -1274,7 +1274,7 @@ tempDweet=[];
 function StartApp() {
 	var prom_worldwindstart = StartWorldWind();
 	
-	
+	fetchData();
 	//console.log("Triggering search....");
 	
 }
