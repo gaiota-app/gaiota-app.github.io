@@ -261,18 +261,18 @@ async function StartWorldWind() {
                     var StrToForm = "Device Name: " +topPickedObject.userObject.displayName+ "<br> Provider: openSenseMap <br>";
                     var StrToAdd = "";
 
-                    for(i=0;i<values.sensors[i].length;i++){
+                    for(i=0;i<values[0].sensors[i].length;i++){
 
-                        for(var keys in values.sensors[i]){
+                        for(var keys in values[0].sensors[i]){
                             if((keys === "sensorType") || (keys === "title") || (keys === "unit") || (keys === "lastMeasurement")){
                                 if(keys === "lastMeasurement"){
 
-                                    for(var keys2 in values.sensors[i][keys]){
-                                        StrToAdd = clone(StrToAdd+""+keys2+": " +values.sensors[i][keys][keys2]+ "<br>");
+                                    for(var keys2 in values[0].sensors[i][keys]){
+                                        StrToAdd = clone(StrToAdd+""+keys2+": " +values[0].sensors[i][keys][keys2]+ "<br>");
                                     }
 
                                 } else {
-                                    StrToAdd = clone(StrToAdd+""+keys+": " +values.sensors[i][keys]+ "<br>");
+                                    StrToAdd = clone(StrToAdd+""+keys+": " +values[0].sensors[i][keys]+ "<br>");
                                 }
                                
                             }
