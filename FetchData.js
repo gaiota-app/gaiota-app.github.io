@@ -479,6 +479,7 @@ var cndCityParamsActual = ['Calgary','Edmonton','Kamloops','Kluane Lake','Montre
 			 // loop
 			 // will disregard the ones with latitude & longitude data of 0.0 exactly (can't be geolocated on the map)
 
+			 /*
 			 
 			 var url = "https://api.thingspeak.com/channels/public.json";
 			
@@ -585,11 +586,13 @@ var cndCityParamsActual = ['Calgary','Edmonton','Kamloops','Kluane Lake','Montre
 					}
 			 }));
 			 
+			 */
 
 			 // Netherlands Smart Emission Project. 
 			 // URL of all stations : http://data.smartemission.nl/sosemu/api/v1/stations
 			 // Timeseries example : http://data.smartemission.nl/sosemu/api/v1/timeseries?format=json&station=stationlabel
 
+			 /*
 
 			 var urlSE = "http://data.smartemission.nl/sosemu/api/v1/stations";
 
@@ -617,6 +620,8 @@ var cndCityParamsActual = ['Calgary','Edmonton','Kamloops','Kluane Lake','Montre
 
 			}));
 
+
+			*/
 
 			// Lookr
 
@@ -699,17 +704,12 @@ var cndCityParamsActual = ['Calgary','Edmonton','Kamloops','Kluane Lake','Montre
 
 			// Barcelona Smart City Sentilo
 
+			/*
+
 			var bcn_url = "https://connecta.bcn.cat/connecta-catalog-web/component/map/json";
 
 			var bcn_smart_city_prom = $.ajax(cors_purl+bcn_url
-				/*
-				{
-					type: "GET",
-					contentType: "application/json",
-					url: bcn_url,
-					headers: { 'Host': "connecta.bcn.cat" }
-				}
-				*/
+				
 			  ).then(function(data){
 				
 
@@ -723,6 +723,8 @@ var cndCityParamsActual = ['Calgary','Edmonton','Kamloops','Kluane Lake','Montre
 			
 			all_Query_Proms.push(bcn_smart_city_prom);
 			
+			*/
+
 			/*
 			    if (!response.ok) {
 					EnableSearchButton();
@@ -743,6 +745,9 @@ var cndCityParamsActual = ['Calgary','Edmonton','Kamloops','Kluane Lake','Montre
 			 // England Environment Agency Flood Information
 
 			 //var engFlUrl = "https://flood-warning-information.service.gov.uk/flood/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=flood:stations&maxFeatures=10000&outputFormat=application/json&srsName=EPSG:4326;"
+			 
+			 /*
+
 			 var engFlUrl = "https://environment.data.gov.uk/flood-monitoring/id/stations?_limit=1000";
 			 var engFlprom = $.ajax(cors_purl+engFlUrl
 				
@@ -757,6 +762,9 @@ var cndCityParamsActual = ['Calgary','Edmonton','Kamloops','Kluane Lake','Montre
 				 
 			})
 			all_Query_Proms.push(engFlprom);
+
+
+			*/
 
 			 /*
 			 var urlSCRadLog = "https://api.safecast.org/en-US/bgeigie_imports.json?by_status=done";
