@@ -1322,11 +1322,13 @@ async function ExtractAllThingsLocation(){
 			"latitude" : tempOSM[i].currentLocation.coordinates[1],
 			"longitude" : tempOSM[i].currentLocation.coordinates[0],
 			"providerID" : "opensensemap",
-			"channelID":tempOSM[i]["_id"],
+			"channelID": tempOSM[i]["_id"],
 			//"thingTag": ["air quality"],
 			
 		};
 		for(j=0;j<tempOSM[i].sensors.length;j++){
+
+			var title1 = tempOSM[i].sensors[j].title
 			var sensorListDet = {
 				"sensorID":tempOSM[i].sensors[j]["_id"],
 				"Type" : tempOSM[i].sensors[j].title,
@@ -1334,8 +1336,8 @@ async function ExtractAllThingsLocation(){
 				"Sensor" : tempOSM[i].sensors[j].sensorType,
 			}
 			thingTag.push(tempOSM[i].sensors[j].title);
-			var dupl = (tempOSM[i].sensors[j].title).replace("PM.","pm");
-			var dupl2 = (tempOSM[i].sensors[j].title).replace("rel.","relative");
+			var dupl = (title1).replace("PM.","pm");
+			var dupl2 = (title1).replace("rel.","relative");
 			thingTag.push(dupl);
 			thingTag.push(dupl2);
 			if((tempOSM[i].sensors[j].lastMeasurement)){
