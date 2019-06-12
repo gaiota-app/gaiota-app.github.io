@@ -248,9 +248,6 @@ async function StartWorldWind() {
             } else if (topPickedObject.userObject.providerID === "opensensemap"){
                 
 
-                var prom = QueryOSM(topPickedObject.userObject.channelID);
-
-
                 if(!!(document.getElementById("existingThingsSummary"))){
                     var existingEl = document.getElementById("existingThingsSummary");
                     existingEl.parentNode.removeChild(existingEl);
@@ -261,6 +258,9 @@ async function StartWorldWind() {
                 newContent.id = "existingThingsSummary";
                 newContent.innerHTML = "LOADING... ";
                 document.getElementById('thingsSummaryID').appendChild(newContent);
+
+
+                var prom = QueryOSM(topPickedObject.userObject.channelID);
 
 
                 Promise.all([prom]).then(function(values){
