@@ -186,6 +186,12 @@ async function StartWorldWind() {
                     existingEl.parentNode.removeChild(existingEl);
                 }
 
+                var newContent = document.createElement("div");
+                newContent.className ="thingsSummary";
+                newContent.id = "existingThingsSummary";
+                newContent.innerHTML = "LOADING... ";
+                document.getElementById('thingsSummaryID').appendChild(newContent);
+
                 //var str_to_form = "Name: " +topPickedObject.userObject.displayName+ "<br> Provider: Ajuntament de Barcelona <br><br>";
 
                 var prom = QueryBCNCat(topPickedObject.userObject.displayName);
@@ -366,9 +372,20 @@ async function StartWorldWind() {
                     existingEl.parentNode.removeChild(existingEl);
                 }
 
+                var newContent = document.createElement("div");
+                newContent.className ="thingsSummary";
+                newContent.id = "existingThingsSummary";
+                newContent.innerHTML = "LOADING... ";
+                document.getElementById('thingsSummaryID').appendChild(newContent);
+
                 var prom = QuerySCFeed(topPickedObject.userObject.channelID);
 
                 Promise.all([prom]).then(function(values){
+
+                    if(!!(document.getElementById("existingThingsSummary"))){
+                        var existingEl = document.getElementById("existingThingsSummary");
+                        existingEl.parentNode.removeChild(existingEl);
+                    }
 
                     
                     var str_to_form = "Device Name: " +topPickedObject.userObject.displayName+ "<br> Last Seen: "+new Date(topPickedObject.userObject.lastSeen).toUTCString()+"<br> Provider: Smart Citizen <br><br>";
@@ -417,9 +434,22 @@ async function StartWorldWind() {
                     existingEl.parentNode.removeChild(existingEl);
                 }
 
+                var newContent = document.createElement("div");
+                newContent.className ="thingsSummary";
+                newContent.id = "existingThingsSummary";
+                newContent.innerHTML = "LOADING... ";
+                document.getElementById('thingsSummaryID').appendChild(newContent);
+
                 var prom = QueryNethSEFeed(topPickedObject.userObject.stationID);
 
                 Promise.all([prom]).then(function(values){
+
+
+                    if(!!(document.getElementById("existingThingsSummary"))){
+                        var existingEl = document.getElementById("existingThingsSummary");
+                        existingEl.parentNode.removeChild(existingEl);
+                    }
+
     
                     var str_to_form = "Station Name: " +topPickedObject.userObject.displayName+ "<br> Last Seen: "+new Date(values[0].feeds[0]["created_at"]).toUTCString()+"<br> Provider: Netherlands Smart Emission Project <br><br>";
                     //str_to_form = clone(str_to_form+"Last Seen: "+values[0].feeds[0]["created_at"]+"<br><br>");
@@ -499,9 +529,20 @@ async function StartWorldWind() {
                     existingEl.parentNode.removeChild(existingEl);
                 }
 
+                var newContent = document.createElement("div");
+                newContent.className ="thingsSummary";
+                newContent.id = "existingThingsSummary";
+                newContent.innerHTML = "LOADING... ";
+                document.getElementById('thingsSummaryID').appendChild(newContent);
+
                 var prom = QueryTSFeed(topPickedObject.userObject.channelID);
 
                 Promise.all([prom]).then(function(values){
+
+                    if(!!(document.getElementById("existingThingsSummary"))){
+                        var existingEl = document.getElementById("existingThingsSummary");
+                        existingEl.parentNode.removeChild(existingEl);
+                    }
 
                     var filt_res={};
                     var str_to_form = "Device Name: " +topPickedObject.userObject.displayName+ "<br> Provider: ThingSpeak <br><br>";
