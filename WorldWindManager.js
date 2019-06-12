@@ -268,10 +268,41 @@ async function StartWorldWind() {
                                 if(keys === "lastMeasurement"){
 
                                     for(var keys2 in values[0].sensors[i][keys]){
-                                        StrToAdd = clone(StrToAdd+""+keys2+": " +values[0].sensors[i][keys][keys2]+ "<br>");
+
+                                        if(keys2 === "value"){
+
+                                    
+                                            StrToAdd = clone(StrToAdd+"Last Value: " +values[0].sensors[i][keys][keys2]+ "<br>");
+                                        
+    
+                                        } else if(keys2 === "createdAt"){
+
+                                    
+                                            StrToAdd = clone(StrToAdd+"Last Update: " +values[0].sensors[i][keys][keys2]+ "<br>");
+                                        
+    
+                                        } else { 
+                                            
+                                            StrToAdd = clone(StrToAdd+""+keys2+": " +values[0].sensors[i][keys][keys2]+ "<br>");
+
+                                        }
+
+                                        
                                     }
 
-                                } else {
+                                } else if(keys === "sensorType"){
+
+                                    
+                                        StrToAdd = clone(StrToAdd+"Sensor: " +values[0].sensors[i][keys]+ "<br>");
+                                    
+
+                                } else if(keys === "title"){
+
+                                    
+                                    StrToAdd = clone(StrToAdd+"Measurement Type: " +values[0].sensors[i][keys]+ "<br>");
+                                
+
+                                 } else {
                                     StrToAdd = clone(StrToAdd+""+keys+": " +values[0].sensors[i][keys]+ "<br>");
                                 }
                                
