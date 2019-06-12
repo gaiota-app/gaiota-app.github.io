@@ -250,6 +250,19 @@ async function StartWorldWind() {
 
                 var prom = QueryOSM(topPickedObject.userObject.channelID);
 
+
+                if(!!(document.getElementById("existingThingsSummary"))){
+                    var existingEl = document.getElementById("existingThingsSummary");
+                    existingEl.parentNode.removeChild(existingEl);
+                }
+
+                var newContent = document.createElement("div");
+                newContent.className ="thingsSummary";
+                newContent.id = "existingThingsSummary";
+                newContent.innerHTML = "LOADING... ";
+                document.getElementById('thingsSummaryID').appendChild(newContent);
+
+
                 Promise.all([prom]).then(function(values){
 
                     if(!!(document.getElementById("existingThingsSummary"))){
