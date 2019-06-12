@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "lite-server": "^2.5.3"
+  },
+  "scripts": { 
+	"start": "lite-server"
   }
 }

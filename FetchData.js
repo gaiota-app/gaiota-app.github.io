@@ -1311,6 +1311,8 @@ async function ExtractAllThingsLocation(){
 	// longitude = value[0];
 	//latitude = value [1];
 
+	console.log(tempOSM);
+
 	for(i=0;i<tempOSM.length;i++){
 		var sensorList = [];
 		var thingTag = ["air quality","air","environment"];
