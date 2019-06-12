@@ -261,7 +261,7 @@ async function StartWorldWind() {
                     var StrToForm = "Device Name: " +topPickedObject.userObject.displayName+ "<br> Provider: openSenseMap <br>";
                     var StrToAdd = "";
 
-                    for(i=0;i<values[0].sensors[i].length;i++){
+                    for(i=0;i<values[0].sensors.length;i++){
 
                         for(var keys in values[0].sensors[i]){
                             if((keys === "sensorType") || (keys === "title") || (keys === "unit") || (keys === "lastMeasurement")){
@@ -290,9 +290,6 @@ async function StartWorldWind() {
                         
                     }
 
-
-    
-                    
                     StrToForm = clone(StrToForm+StrToAdd);
                     var newContent = document.createElement("div");
                         newContent.className ="thingsSummary";
