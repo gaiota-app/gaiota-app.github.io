@@ -278,7 +278,7 @@ async function StartWorldWind() {
                                         } else if(keys2 === "createdAt"){
 
                                     
-                                            StrToAdd = clone(StrToAdd+"Last Update: " +values[0].sensors[i][keys][keys2]+ "<br>");
+                                            StrToAdd = clone(StrToAdd+"Last Update: " +new Date (values[0].sensors[i][keys][keys2]).toUTCString() + "<br>");
                                         
     
                                         } else { 
