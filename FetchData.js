@@ -1344,6 +1344,7 @@ async function ExtractAllThingsLocation(){
 				var dupl2 = (title1).replace("rel.","relative");
 				thingTag.push(dupl);
 				thingTag.push(dupl2);
+				/*
 				if((tempOSM[i].sensors[j].lastMeasurement)){
 					sensorListDet["Last Value"] =  tempOSM[i].sensors[j].lastMeasurement.value;
 					sensorListDet["Last Seen"] = tempOSM[i].sensors[j].lastMeasurement.createdAt;
@@ -1351,6 +1352,7 @@ async function ExtractAllThingsLocation(){
 					sensorListDet["Last Value"] =  "Data Not Available";
 					sensorListDet["Last Seen"] = "Data Not Available";
 				}
+				*/
 				
 				sensorList.push(sensorListDet);
 			}
@@ -1641,6 +1643,24 @@ async function QueryBCNCat(station_id){
 		return response.json()});
 
 	var prom2=Promise.all([prom]).then(function(values){
+			return values[0];
+		});
+
+		return prom2;
+}
+
+async function QueryOSM(box_id){
+
+	var url = "https://api.opensensemap.org/boxes/"+box_id;
+
+	var prom = fetch(url).then(function(response) {
+		if (!response.ok) {
+			EnableSearchButton();
+			throw Error(response.statusText);
+		}
+		return response.json()});
+
+	var prom2 =	Promise.all([prom]).then(function(values){
 			return values[0];
 		});
 

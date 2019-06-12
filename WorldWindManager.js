@@ -247,49 +247,74 @@ async function StartWorldWind() {
 
             } else if (topPickedObject.userObject.providerID === "opensensemap"){
                 
-                
-                if(!!(document.getElementById("existingThingsSummary"))){
-                    var existingEl = document.getElementById("existingThingsSummary");
-                    existingEl.parentNode.removeChild(existingEl);
-                }
-            
-                var sensorListArr = topPickedObject.userObject.sensorList;
-                var StrToForm = "Device Name: " +topPickedObject.userObject.displayName+ "<br> Provider: openSenseMap <br>";
-                var StrToAdd = "";
-                for(i=0;i<sensorListArr.length;i++){
-                    for(var keys in sensorListArr[i]){
 
-                        if(!(keys === "sensorID")){
-                            StrToAdd = clone(StrToAdd+""+keys+": " +sensorListArr[i][keys]+ "<br>");
-                        }
-                    
+                var prom = QueryOSM(topPickedObject.userObject.channelID);
+
+                Promise.all([prom]).then(function(values){
+
+                    if(!!(document.getElementById("existingThingsSummary"))){
+                        var existingEl = document.getElementById("existingThingsSummary");
+                        existingEl.parentNode.removeChild(existingEl);
                     }
-                    var newContent=document.createElement('option');
-                    newContent.id = "sensorOption"+i;
-                    newContent.yAxisLabelType = sensorListArr[i].Type;
-                    newContent.yAxisLabelUnit = sensorListArr[i].Unit;
-                    newContent.value = sensorListArr[i]["sensorID"];
-                    newContent.innerHTML = sensorListArr[i].Type;
-                    document.getElementById('selectSensor').appendChild(newContent);
+                
+                    var sensorListArr = topPickedObject.userObject.sensorList;
+                    var StrToForm = "Device Name: " +topPickedObject.userObject.displayName+ "<br> Provider: openSenseMap <br>";
+                    var StrToAdd = "";
 
-                    StrToAdd = clone(StrToAdd+"<br>");
-                }
+                    for(i=0;i<values.sensor[i].length;i++){
 
-                StrToForm = clone(StrToForm+StrToAdd);
-                var newContent = document.createElement("div");
-                    newContent.className ="thingsSummary";
-                    newContent.id = "existingThingsSummary";
-                    newContent.innerHTML = StrToForm;
-                    document.getElementById('thingsSummaryID').appendChild(newContent);
+                        for(var keys in values.sensor[i]){
+                            if((keys === "sensorType") || (keys === "title") || (keys === "unit") || (keys === "lastMeasurement")){
+                                if(keys === "lastMeasurement"){
 
+                                    for(var keys2 in values.sensor[i][keys]){
+                                        StrToAdd = clone(StrToAdd+""+keys2+": " +values.sensor[i][keys][keys2]+ "<br>");
+                                    }
+
+                                } else {
+                                    StrToAdd = clone(StrToAdd+""+keys+": " +values.sensor[i][keys]+ "<br>");
+                                }
+                               
+                            }
+                        }
+                        
+                        var newContent=document.createElement('option');
+                        newContent.id = "sensorOption"+i;
+                        newContent.yAxisLabelType = sensorListArr[i].Type;
+                        newContent.yAxisLabelUnit = sensorListArr[i].Unit;
+                        newContent.value = sensorListArr[i]["sensorID"];
+                        newContent.innerHTML = sensorListArr[i].Type;
+                        document.getElementById('selectSensor').appendChild(newContent);
+    
+                        StrToAdd = clone(StrToAdd+"<br>");
+                        
+                    }
+
+
+    
                     
-                    document.getElementById('startTime').disabled = false;
-                    document.getElementById('endTime').disabled = false;
-                    document.getElementById('selectSensor').disabled = false;
-                    document.getElementById('submitStartEndDateTime').disabled = false;
-                    document.getElementById('spanTimeNum').disabled = false;
-                    document.getElementById('spanTimeUnit').disabled = false;
-                    document.getElementById('submitStartEndDateTimeTimeSeries').disabled = false;
+                    StrToForm = clone(StrToForm+StrToAdd);
+                    var newContent = document.createElement("div");
+                        newContent.className ="thingsSummary";
+                        newContent.id = "existingThingsSummary";
+                        newContent.innerHTML = StrToForm;
+                        document.getElementById('thingsSummaryID').appendChild(newContent);
+
+                        document.getElementById('startTime').disabled = false;
+                        document.getElementById('endTime').disabled = false;
+                        document.getElementById('selectSensor').disabled = false;
+                        document.getElementById('submitStartEndDateTime').disabled = false;
+                        document.getElementById('spanTimeNum').disabled = false;
+                        document.getElementById('spanTimeUnit').disabled = false;
+                        document.getElementById('submitStartEndDateTimeTimeSeries').disabled = false;
+                        
+                       
+
+
+                })
+
+               
+                
                     
 
             }  else if (topPickedObject.userObject.providerID === "smartcitizen"){
