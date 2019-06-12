@@ -299,7 +299,7 @@ async function StartWorldWind() {
                                 } else if(keys === "title"){
 
                                     
-                                    StrToAdd = clone(StrToAdd+"Measurement Type: " +values[0].sensors[i][keys]+ "<br>");
+                                    StrToAdd = clone(StrToAdd+"Description: " +values[0].sensors[i][keys]+ "<br>");
                                 
 
                                  } else {
