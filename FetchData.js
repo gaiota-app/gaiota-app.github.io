@@ -1311,7 +1311,7 @@ async function ExtractAllThingsLocation(){
 	// longitude = value[0];
 	//latitude = value [1];
 
-	console.log(tempOSM);
+	//console.log(tempOSM);
 
 	for(i=0;i<tempOSM.length;i++){
 		var sensorList = [];
@@ -1328,7 +1328,12 @@ async function ExtractAllThingsLocation(){
 		};
 		for(j=0;j<tempOSM[i].sensors.length;j++){
 
+			
+
 			var title1 = tempOSM[i].sensors[j].title
+
+			console.log("test in i: " +i+ " and j: " +j+ " "  +title1);
+
 			var sensorListDet = {
 				"sensorID":tempOSM[i].sensors[j]["_id"],
 				"Type" : tempOSM[i].sensors[j].title,
