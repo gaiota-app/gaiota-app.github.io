@@ -1328,32 +1328,33 @@ async function ExtractAllThingsLocation(){
 		};
 		for(j=0;j<tempOSM[i].sensors.length;j++){
 
-			
+			if(tempOSM[i].sensors[j].hasOwnProperty("title")){
+				var title1 = tempOSM[i].sensors[j].title
+
+				//console.log("test in i: " +i+ " and j: " +j+ " "  +title1);
+
+				var sensorListDet = {
+					"sensorID":tempOSM[i].sensors[j]["_id"],
+					"Type" : tempOSM[i].sensors[j].title,
+					"Unit" : tempOSM[i].sensors[j].unit,
+					"Sensor" : tempOSM[i].sensors[j].sensorType,
+				}
+				thingTag.push(tempOSM[i].sensors[j].title);
+				var dupl = (title1).replace("PM.","pm");
+				var dupl2 = (title1).replace("rel.","relative");
+				thingTag.push(dupl);
+				thingTag.push(dupl2);
+				if((tempOSM[i].sensors[j].lastMeasurement)){
+					sensorListDet["Last Value"] =  tempOSM[i].sensors[j].lastMeasurement.value;
+					sensorListDet["Last Seen"] = tempOSM[i].sensors[j].lastMeasurement.createdAt;
+				} else {
+					sensorListDet["Last Value"] =  "Data Not Available";
+					sensorListDet["Last Seen"] = "Data Not Available";
+				}
+				
+				sensorList.push(sensorListDet);
+			}
 			 
-			var title1 = tempOSM[i].sensors[j].title
-
-			//console.log("test in i: " +i+ " and j: " +j+ " "  +title1);
-
-			var sensorListDet = {
-				"sensorID":tempOSM[i].sensors[j]["_id"],
-				"Type" : tempOSM[i].sensors[j].title,
-				"Unit" : tempOSM[i].sensors[j].unit,
-				"Sensor" : tempOSM[i].sensors[j].sensorType,
-			}
-			thingTag.push(tempOSM[i].sensors[j].title);
-			var dupl = (title1).replace("PM.","pm");
-			var dupl2 = (title1).replace("rel.","relative");
-			thingTag.push(dupl);
-			thingTag.push(dupl2);
-			if((tempOSM[i].sensors[j].lastMeasurement)){
-				sensorListDet["Last Value"] =  tempOSM[i].sensors[j].lastMeasurement.value;
-				sensorListDet["Last Seen"] = tempOSM[i].sensors[j].lastMeasurement.createdAt;
-			} else {
-				sensorListDet["Last Value"] =  "Data Not Available";
-				sensorListDet["Last Seen"] = "Data Not Available";
-			}
-			
-			sensorList.push(sensorListDet);
 		}
 		OSMTh.thingTag = thingTag;
 		OSMTh["sensorList"] = sensorList;
